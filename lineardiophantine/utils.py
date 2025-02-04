@@ -45,3 +45,25 @@ def scalar_product(v1, v2):
     if isinstance(v1, np.ndarray) and isinstance(v2, np.ndarray):
         return np.dot(v1, v2)
     return sum(x * y for x, y in zip(v1, v2))
+
+
+def is_integer_matrix(A):
+    """
+    Check if a matrix consists only of integer values.
+
+    Parameters
+    ----------
+    A : np.ndarray
+        A two-dimensional NumPy array of shape (m, n).
+
+    Returns
+    -------
+    bool
+        True if all elements of A are integers, False otherwise.
+    """
+
+    for i in range(A.shape[0]):
+        for j in range(A.shape[1]):
+            if A[i, j] % 1:
+                return False
+    return True
