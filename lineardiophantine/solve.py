@@ -1,6 +1,8 @@
 import numpy as np
+from hsnf import smith_normal_form
 
-from lineardiophantine.utils import scalar_product, strictly_greater
+from lineardiophantine.utils import (is_integer_matrix, scalar_product,
+                                     strictly_greater)
 
 
 def solve_on_n(A, b):
@@ -87,3 +89,56 @@ def solve_on_n(A, b):
     hom_basis = [list(l[1:]) for l in B if l[0] == 0]
 
     return unhom_basis, hom_basis
+
+
+def solve_on_z(A, b):
+    """
+    Solve the Diophantine system A * X = b over the integers using the Smith normal form method.
+
+    Parameters
+    ----------
+    A : np.ndarray
+        A two-dimensional NumPy array of shape (m, n) representing the coefficient matrix.
+    b : np.ndarray
+        A two-dimensional NumPy array of shape (m, 1) representing the right-hand side vector.
+
+    Returns
+    -------
+    unhom_basis : list of list of int
+        A basis for the particular solutions to A @ X = b (unhomogeneous part).
+
+    hom_basis : list of list of int
+        A basis for the homogeneous solutions to A @ X = 0.
+    """
+
+    # Compute Smith normal form
+    SNF, U, V = smith_normal_form(A)
+    b = b.reshape(-1, 1)
+    c = np.dot(U, b)
+
+    r = 0
+    while r < min(SNF.shape[0], SNF.shape[1]) and SNF[r, r] != 0:
+        r = r + 1
+
+    D = SNF[:r, :r]
+    c1 = c[:r, :]
+    c2 = c[r:, :]
+
+    Dinv = np.linalg.inv(D)
+
+    if sum(c2) == 0 and is_integer_matrix(np.dot(Dinv, c1)):
+        # Extract Basis Solutions
+
+        sol = np.dot(Dinv, c1)
+        if r < A.shape[1]:
+            sol = np.vstack([sol, np.array([[0]] * (A.shape[1] - r))])
+        sol = np.dot(V, sol)
+        sol = sol.astype(int)
+        unhom_basis = (sol.T).tolist()
+        NS = V[:, -(A.shape[1] - r) :]
+        NS = NS.astype(int)
+        hom_basis = (NS.T).tolist()
+
+        return unhom_basis, hom_basis
+    else:
+        return [], []
