@@ -7,5 +7,7 @@ name = "linear-diophantine"
 version = "0.1"
 dependencies = [
 	"numpy",
-	"hsnf"
+	"hsnf",
+	"pytest",
+    "pytest-cov"
 ]
