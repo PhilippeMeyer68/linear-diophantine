@@ -25,6 +25,9 @@ jobs:
         run: |
           pytest --cov=lineardiophantine --cov-report=xml
 
+      - name: Display coverage.xml
+        run: cat coverage.xml
+  
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
