@@ -1,5 +1,4 @@
 import numpy as np
-
 from lineardiophantine.utils import (is_integer_matrix, scalar_product,
                                      strictly_greater)
 
