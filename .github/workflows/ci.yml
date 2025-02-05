@@ -21,12 +21,15 @@ jobs:
           pip install .
           pip install pytest pytest-cov
 
+      - name: List installed packages
+        run: pip list
+
       - name: Check working directory
         run: pwd
 
       - name: Run tests with coverage
         run: |
-          pytest -v --cov=lineardiophantine --cov-report=xml:coverage.xml
+          pytest tests/ --cov=./lineardiophantine --cov-report=xml:coverage.xml
 
       - name: Display coverage.xml
         run: cat coverage.xml
