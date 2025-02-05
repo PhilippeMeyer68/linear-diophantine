@@ -18,21 +18,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install .
+          pip install .  # This installs the current package locally
           pip install pytest pytest-cov
-
-      - name: List installed packages
-        run: pip list
-
-      - name: Check working directory
-        run: pwd
 
       - name: Run tests with coverage
         run: |
-          pytest --cov=lineardiophantine --cov-report=xml:coverage.xml -v --cov-append
-
-      - name: Display coverage.xml
-        run: cat coverage.xml
+          pytest --cov=lineardiophantine --cov-report=xml:coverage.xml -v
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
