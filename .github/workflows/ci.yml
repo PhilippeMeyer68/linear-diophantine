@@ -23,7 +23,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pytest --cov=lineardiophantine --cov-report=xml
+          pytest -v --cov=lineardiophantine --cov-report=xml:coverage.xml
 
       - name: Display coverage.xml
         run: cat coverage.xml
