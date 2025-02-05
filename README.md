@@ -1,4 +1,4 @@
-[![Coverage](https://codecov.io/gh/PhilippeMeyer68/linear-diophantine/branch/main/graph/badge.svg)](https://codecov.io/gh/PhilippeMeyer68/linear-diophantine)
+![Codecov](https://codecov.io/github/PhilippeMeyer68/linear-diophantine/coverage.svg)
 
 # **Solving linear Diophantine systems over natural numbers**
 
