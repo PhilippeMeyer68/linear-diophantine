@@ -21,13 +21,16 @@ jobs:
           pip install .
           pip install pytest pytest-cov
 
+      - name: Check working directory
+        run: pwd
+
       - name: Run tests with coverage
         run: |
           pytest -v --cov=lineardiophantine --cov-report=xml:coverage.xml
 
       - name: Display coverage.xml
         run: cat coverage.xml
-  
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
