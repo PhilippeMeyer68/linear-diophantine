@@ -1,3 +1,5 @@
+[![Coverage](https://codecov.io/gh/PhilippeMeyer68/linear-diophantine/branch/main/graph/badge.svg)](https://codecov.io/gh/PhilippeMeyer68/linear-diophantine)
+
 # **Solving linear Diophantine systems over natural numbers**
 
 This repository contains a code and especially a ```solve_on_n``` function for solving linear Diophantine systems over natural numbers using the Contejean-Devie algorithm.
