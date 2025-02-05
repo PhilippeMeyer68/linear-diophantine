@@ -5,4 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "linear-diophantine"
 version = "0.1"
-dependencies = []
+dependencies = [
+	"numpy",
+	"hsnf"
+]
