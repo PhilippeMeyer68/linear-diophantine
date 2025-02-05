@@ -6,8 +6,11 @@ build-backend = "setuptools.build_meta"
 name = "linear-diophantine"
 version = "0.1"
 dependencies = [
-	"numpy",
-	"hsnf",
-	"pytest",
+    "numpy",
+    "hsnf",
+    "pytest",
     "pytest-cov"
 ]
+
+[tool.pytest.ini_options]
+pythonpath = ["./lineardiophantine"]
